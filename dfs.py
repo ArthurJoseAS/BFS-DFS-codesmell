@@ -16,6 +16,7 @@ def ler_grafo_dot(arquivo):
             nodes.append(dst)
 
     n = len(nodes)
+
     nodes.sort()
 
 
@@ -36,33 +37,52 @@ def ler_grafo_dot(arquivo):
                 adj_list[j].append(u)
     return nodes, adj_list
 
+qtd_vertices = 0
 indice = {}
 tempo_chegada = []
-tempo_final = []
+tempo_saida = []
 predecessores = []
-visitado = []
-time = 0
+visitado: list
+time: int = 0
 
 def dfs(vertices: list[str], adj_list: list[list]):
+    
     for v in vertices:
-        visitado[v] = False    
+        visitado[indice[v]] = False    
     for v in vertices:
-        if not visitado[v]:
+        if not visitado[indice[v]]:
+            predecessores[indice[v]] = "NIL"
             dfs_visit(v, adj_list)
+ordem = []
 
 def dfs_visit(v, adj_list):
-    visitado[v] = True
-    tempo += 1
+    global time
+    ordem.append(v)
+    visitado[indice[v]] = True
+    time += 1
+    tempo_chegada[indice[v]] = time
+    
     adj_list[indice[v]].sort()
     for a in adj_list[indice[v]]:
-        if not visitado[a]:
+        if not visitado[indice[a]]:
+            predecessores[indice[a]] = v
             dfs_visit(a, adj_list)
-    tempo += 1
-    return
+    
+    time += 1
+    tempo_saida[indice[v]] = time
 
 if __name__ == "__main__":
     arquivo = sys.argv[1]
     vertices, adj_list = ler_grafo_dot(arquivo)
-
-    resultado = dfs(vertices, adj_list)
-    print("\nOrdem da DFS:", " -> ".join(resultado))
+    qtd_vertices = len(vertices)
+    visitado = [None] * qtd_vertices
+    tempo_chegada = [None] * qtd_vertices
+    tempo_saida = [None] * qtd_vertices
+    predecessores = [None] * qtd_vertices 
+    dfs(vertices, adj_list)
+    for i in ordem:
+        print(">" + str(i) + "-"  , end = "")
+    print("")
+    for v in vertices:
+        print(str(v) + " " + str(tempo_chegada[indice[v]]) + "/" + str(tempo_saida[indice[v]]))
+    print(predecessores)

@@ -1,0 +1,13 @@
+graph output_graph {
+a;
+b;
+c;
+d;
+f;
+g;
+a -- b;
+b -- c;
+c -- d;
+c -- f;
+f -- g;
+}

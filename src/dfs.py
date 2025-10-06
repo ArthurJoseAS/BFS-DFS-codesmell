@@ -66,23 +66,29 @@ def dfs_visit(v, adj_list):
     for a in adj_list[indice[v]]:
         if not visitado[indice[a]]:
             predecessores[indice[a]] = v
+            export_graph.add_edge(pydot.Edge(v, a))
             dfs_visit(a, adj_list)
     
     time += 1
     tempo_saida[indice[v]] = time
 
+export_graph = pydot.Dot("output_graph", graph_type="graph")
+
 if __name__ == "__main__":
     arquivo = sys.argv[1]
     vertices, adj_list = ler_grafo_dot(arquivo)
+    for v in vertices:
+        export_graph.add_node(pydot.Node(v))
+    
     qtd_vertices = len(vertices)
     visitado = [None] * qtd_vertices
     tempo_chegada = [None] * qtd_vertices
     tempo_saida = [None] * qtd_vertices
     predecessores = [None] * qtd_vertices 
     dfs(vertices, adj_list)
-    for i in ordem:
-        print(">" + str(i) + "-"  , end = "")
-    print("")
+    print("Ordem da DFS:", " -> ".join(ordem))
     for v in vertices:
-        print(str(v) + " " + str(tempo_chegada[indice[v]]) + "/" + str(tempo_saida[indice[v]]))
-    print(predecessores)
+        print(str(v) + ": " + str(adj_list[indice[v]]) + "  " + str(tempo_chegada[indice[v]]) + "/" + str(tempo_saida[indice[v]])
+              + "  Predecessor: " + str(predecessores[indice[v]]))
+    nome_arquivo: str = sys.argv[1][:sys.argv[1].rindex(".")]
+    export_graph.write(nome_arquivo + "dfstree.dot")

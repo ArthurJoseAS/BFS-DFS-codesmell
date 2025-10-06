@@ -4,7 +4,7 @@ Implementação da Busca em Largura e Busca em Profundidade em python com a leit
 ## Como Rodar
 Idealmente, usa-se a ferramenta uv para sincronizar bibliotecas python.
 Para sincronizar apenas execute ``uv sync`` na raiz do projeto
-Para rodar a bfs utilize ``uv run python3 src/bfs.py {nome do arquivo do grafo}.dot``. A bfs é rodada de forma analoga
+Para rodar a bfs utilize ``uv run python3 src/bfs.py {nome do arquivo do grafo}.dot``. A dfs é rodada de forma analoga
 
 Caso não esteja utilizando o uv, é preciso ter a biblioteca pydot instalada e rodar o comando acima **sem** a parte do ``uv run``
 

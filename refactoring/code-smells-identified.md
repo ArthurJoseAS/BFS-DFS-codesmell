@@ -30,6 +30,7 @@
   - `fila` → `queue`
   - `vizinhos` → `neighbors`
   - `ler_grafo_dot` → `read_dot_graph`
+  - e outros...
 - **Status**: Pendente
 
 ### 3. **Global Variables (Variáveis Globais)**

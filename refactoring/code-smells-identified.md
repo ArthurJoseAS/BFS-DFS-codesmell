@@ -31,7 +31,7 @@
   - `vizinhos` → `neighbors`
   - `ler_grafo_dot` → `read_dot_graph`
   - e outros...
-- **Status**: Pendente
+- **Status**: Feito!
 
 ### 3. **Global Variables (Variáveis Globais)**
 

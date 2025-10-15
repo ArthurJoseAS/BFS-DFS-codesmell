@@ -1,6 +1,16 @@
 # Code Smells Identificados
 
+
+
+
+
+
 ## Análise do Arquivo: `bfs.py`
+
+
+
+
+
 
 ### 1. **Long Method**
 
@@ -15,7 +25,7 @@
   - Constrói matriz de adjacência
   - Ordena nós
 - **Ferramenta**: pylint (função muito complexa)
-- **Status**: Pendente
+- **Status**: Feito!
 
 ### 2. **Poor Naming (Nomenclatura Pobre)**
 
@@ -87,17 +97,22 @@
 - **Severidade**: Alta
 - **Status**: Pendente
 
-### 9. **Mixed Abstractions (Abstrações Misturadas)**
 
-- **Arquivo**: `bfs.py`
-- **Linhas**: 45-70
-- **Descrição**: Função `bfs()` mistura algoritmo BFS com manipulação de gráficos de exportação
-- **Severidade**: Média
-- **Status**: Pendente
+
+
+
+
+
 
 ## Análise do Arquivo: `dfs.py`
 
-### 10. **Long Method**
+
+
+
+
+
+
+### 9. **Long Method**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 3-30
@@ -110,9 +125,9 @@
   - Constrói lista de adjacência
   - Ordena nós
 - **Ferramenta**: pylint (função muito complexa)
-- **Status**: Pendente
+- **Status**: Feito!
 
-### 11. **Poor Naming (Nomenclatura Pobre)**
+### 10. **Poor Naming (Nomenclatura Pobre)**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: Em todo o código
@@ -125,9 +140,9 @@
   - `qtd_vertices` → `vertex_count`
   - `tempo_chegada` → `discovery_time`
   - `tempo_saida` → `finish_time`
-- **Status**: Pendente
+- **Status**: Feito!
 
-### 12. **Global Variables (Variáveis Globais)**
+### 11. **Global Variables (Variáveis Globais)**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 33-39, 58
@@ -139,7 +154,7 @@
   - Causa acoplamento entre funções
 - **Status**: Pendente
 
-### 13. **Global State Modification**
+### 12. **Global State Modification**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 42-46
@@ -148,16 +163,8 @@
 - **Problema**: Variável global modificada dentro da função `dfs_visit`
 - **Status**: Pendente
 
-### 14. **Mixed Abstractions (Abstrações Misturadas)**
 
-- **Arquivo**: `dfs.py`
-- **Linhas**: 48-60
-- **Descrição**: Função `dfs_visit` mistura algoritmo DFS com manipulação de gráficos de exportação
-- **Severidade**: Média
-- **Problema**: A função DFS deveria focar apenas na travessia do grafo
-- **Status**: Pendente
-
-### 15. **Feature Envy (Inveja de Funcionalidade)**
+### 13. **Feature Envy (Inveja de Funcionalidade)**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 55
@@ -165,7 +172,7 @@
 - **Severidade**: Média
 - **Status**: Pendente
 
-### 16. **No Error Handling (Falta de Tratamento de Erros)**
+### 14. **No Error Handling (Falta de Tratamento de Erros)**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 4, 63
@@ -173,7 +180,7 @@
 - **Severidade**: Alta
 - **Status**: Pendente
 
-### 17. **Inconsistent Initialization**
+### 15. **Inconsistent Initialization**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 33-39, 68-71
@@ -182,15 +189,7 @@
 - **Problema**: Dificulta o entendimento do fluxo de inicialização
 - **Status**: Pendente
 
-### 18. **Poor Function Structure**
-
-- **Arquivo**: `dfs.py`
-- **Linhas**: 42-46
-- **Descrição**: Função `dfs` tem responsabilidade dupla - inicialização e execução do algoritmo
-- **Severidade**: Média
-- **Status**: Pendente
-
-### 19. **Duplicate Code (Código Duplicado)**
+### 16. **Duplicate Code (Código Duplicado)**
 
 - **Arquivo**: `dfs.py`
 - **Linhas**: 7-13, 16-22
@@ -203,10 +202,10 @@
 | Severidade | BFS | DFS | Total |
 |------------|-----|-----|-------|
 | Alta       | 4   | 5   | 9     |
-| Média      | 3   | 4   | 7     |
+| Média      | 2   | 2   | 4     |
 | Baixa      | 2   | 1   | 3     |
 
-**Total de Code Smells Identificados**: 19
+**Total de Code Smells Identificados**: 16
 
 ## Prioridade de Correção
 
@@ -218,7 +217,7 @@
 - No Error Handling em ambos os arquivos
 - Global State Modification no DFS
 
-### 🟧 Média Prioridade (7 smells)
+### 🟧 Média Prioridade (4 smells)
 
 - Mixed Abstractions
 - Feature Envy

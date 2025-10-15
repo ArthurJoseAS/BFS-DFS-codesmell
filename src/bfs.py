@@ -129,4 +129,4 @@ if __name__ == "__main__":
             + str(distance_list[i])
         )
     output_filename: str = sys.argv[1][: sys.argv[1].rindex(".")]
-    export_graph.write(output_filename + "bfstree.dot")
+    export_graph.write(output_filename + "_bfstree.dot")

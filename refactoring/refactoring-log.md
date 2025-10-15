@@ -65,3 +65,11 @@ for i, vertex in enumerate(vertices):
 ```  
 
 - **Mudanças**: `range(len(vertices)) → enumerate(vertices)`; `vertices[i] → vertex (acesso direto ao elemento)`; Eliminação de indexação desnecessária.
+
+## Refatoração #3: Breaking up the read_dot_graph into smaller functions
+
+- **Data**: 14/10/2025
+- **Code Smell**: long method
+- **Técnica Aplicada**: Breaking up method in smaller ones
+- **Arquivos Afetados**: `dfs.py` & `bfs.py`
+- **Justificativas**: Método muito longo e com muitas responsabilidades

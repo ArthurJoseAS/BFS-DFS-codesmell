@@ -15,3 +15,9 @@ Caso não esteja utilizando o uv, é preciso ter a biblioteca pydot instalada e 
 A BFS exibe a ordem de busca, a matriz de adjacência e as distâncias do vértice inicial para cada vértice do grafo. Além disso ela exibe a árvore de BFS gerada pela bfs como um arquivo chamado bfstree.dot no diretório em que está localizado o arquivo .dot original
 
 A DFS exibe a ordem de busca, as listas de adjacências de cada vértice, o tempo de chegada e saída de cada vértice e os predecessores. Além disso ela exibe a árvore DFS gerada pela busca como um arquivo .dot assim como na BFS
+
+Para visualizar o grafo .dot gerado, é necessário instalar o programa graphviz
+
+Exemplo de execução gerando o PNG:
+``uv run python3 src/bfs.py ./imagedata/example1.dot``
+``dot -Tpng ./imagedata/example1dfstree.dot -o exemplo.png``

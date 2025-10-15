@@ -2,34 +2,10 @@ import sys
 import pydot
 
 
-def read_dot_graph(arquivo):
-    graphs = pydot.graph_from_dot_file(arquivo)
-    graph = graphs[0]
-
-    nodes = [
-        node.get_name()
-        for node in graph.get_nodes()
-        if node.get_name() not in ("node", "graph", "edge")
-    ]
-
-    for edge in graph.get_edges():
-        source = edge.get_source()
-        destination = edge.get_destination()
-        if source not in nodes:
-            nodes.append(source)
-        if destination not in nodes:
-            nodes.append(destination)
-
-    node_count = len(nodes)
-    nodes.sort()
-
-    node_index_map = {}
-
-    for source_index in range(node_count):
-        node_index_map[nodes[source_index]] = source_index
-
-    adjacency_matrix = [[0] * node_count for _ in range(node_count)]
-
+"""
+Fills the adjacency matrix with the edges from the .dot graph
+"""
+def fill_adj_matrix(graph, node_index_map, adjacency_matrix):
     for edge in graph.get_edges():
         source_vertex, destination_vertex = str(edge.get_source()), str(
             edge.get_destination()
@@ -41,6 +17,63 @@ def read_dot_graph(arquivo):
         adjacency_matrix[source_index][destination_index] = 1
         if not graph.get_type() == "digraph":
             adjacency_matrix[destination_index][source_index] = 1
+
+"""
+Fills the nodes list with the graph read from the .dot file
+"""
+def populate_nodes_list(nodes, graph):
+    for edge in graph.get_edges():
+        source = edge.get_source()
+        destination = edge.get_destination()
+        if source not in nodes:
+            nodes.append(source)
+        if destination not in nodes:
+            nodes.append(destination)
+
+"""
+Reads a .dot file and returns a node list and an adjacency matrix that represents the read graph
+"""
+def read_dot_graph(arquivo):
+    graphs = pydot.graph_from_dot_file(arquivo)
+    graph = graphs[0]
+
+    nodes = [
+        node.get_name()
+        for node in graph.get_nodes()
+        if node.get_name() not in ("node", "graph", "edge")
+    ]
+    populate_nodes_list(nodes, graph)
+    # for edge in graph.get_edges():
+    #     source = edge.get_source()
+    #     destination = edge.get_destination()
+    #     if source not in nodes:
+    #         nodes.append(source)
+    #     if destination not in nodes:
+    #         nodes.append(destination)
+
+    node_count = len(nodes)
+    nodes.sort()
+
+    node_index_map = {}
+
+    for source_index in range(node_count):
+        node_index_map[nodes[source_index]] = source_index
+
+    adjacency_matrix = [[0] * node_count for _ in range(node_count)]
+
+    fill_adj_matrix(graph ,node_index_map, adjacency_matrix)
+
+    # for edge in graph.get_edges():
+    #     source_vertex, destination_vertex = str(edge.get_source()), str(
+    #         edge.get_destination()
+    #     )
+    #     source_index, destination_index = (
+    #         node_index_map[source_vertex],
+    #         node_index_map[destination_vertex],
+    #     )
+    #     adjacency_matrix[source_index][destination_index] = 1
+    #     if not graph.get_type() == "digraph":
+    #         adjacency_matrix[destination_index][source_index] = 1
 
     return nodes, adjacency_matrix
 
